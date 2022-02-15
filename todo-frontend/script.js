@@ -1,5 +1,8 @@
-const apiurl = "http://localhost:5000/todos"
+// const apiurl = "http://localhost:5000/todos"
 
+const apiurl = "https://praveenb-todoapp.herokuapp.com/todos"
+
+// Function to mark a todo as complete
 function markcompleted(id) {
     let confirmMC = confirm("Mark this todo as complete? You cannot edit once you mark a todo complete");
     if (confirmMC == true) {
@@ -19,7 +22,7 @@ function markcompleted(id) {
     }
 }
 
-// Function to delete a note
+// Function to delete a todo
 function deleteTodo(id) {
     let confirmDel = confirm("Delete this todo?");
     if (confirmDel == true) {
@@ -39,9 +42,9 @@ function deleteTodo(id) {
     }
 }
 
+// Function to get all todos
 function getTodos() {
-    const url = "http://localhost:5000/todos"
-    fetch(url)
+    fetch(apiurl)
         .then((response) => {
             return response.json()
         })
@@ -52,7 +55,7 @@ function getTodos() {
             } else {
                 todosObj = data
             }
-            console.log("todoObj:", todosObj)
+
             let html = "";
             if(todosObj["activetodos"])
             todosObj["activetodos"].reverse().forEach(function (element, index) {
@@ -95,7 +98,6 @@ function getTodos() {
         .catch((err) => {
             console.log(err)
         })
-
 }
 
 getTodos()
@@ -111,12 +113,10 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   var button = event.relatedTarget
 
   var id = button.getAttribute('id')
-  console.log(id)
 
   if(id === "createbtn") {
     document.getElementById("exampleModalLabel").innerHTML = `Create Todo`
     document.getElementById("modalSubmit").innerHTML = `Create`
-    console.log(true);
   } else {
     document.getElementById("exampleModalLabel").innerHTML = `Update Todo`
     document.getElementById("modalSubmit").innerHTML = `Update`
@@ -140,7 +140,6 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
         todojson.text  = modalBodyInputText.value;
         todojson.completed = false;
         var jsonString= JSON.stringify(todojson);
-        console.log(jsonString);
 
         if(id === "createbtn") {
             console.log("Inside Create"+ button.getAttribute('id'));

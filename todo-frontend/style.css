@@ -1,6 +1,14 @@
+.navbar {
+    padding-block: 0.8rem !important;
+}
+
+.navbar-brand strong {
+    font-weight: 900 !important;
+}
+
 .newTodo {
     width: 100vw;
-    padding-block: 2rem !important;
+    padding-block: 1rem !important;
     /* background: #f8f9fb; */
     background: #479962;
     /* background-color: rgb(116, 116, 236); */
