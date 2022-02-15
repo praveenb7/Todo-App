@@ -37,6 +37,7 @@ type NormalMessage struct {
 var openTodos []ToDo
 var completedTodos []ToDo
 
+//This function returns all the active and completed todos
 func getAllTodos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var message = ToDoMessage{
@@ -48,6 +49,7 @@ func getAllTodos(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(message)
 }
 
+//This function creates a todo
 func createTodo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -74,6 +76,7 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//This function updates a todo
 func updateTodo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -110,6 +113,7 @@ func updateTodo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(message)
 }
 
+//This function deletes a todo
 func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -140,6 +144,7 @@ func deleteTodo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(message)
 }
 
+//This function returns all the todos whose title or text match with the qiven query
 func searchTodo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	query := strings.ToLower(r.URL.Query().Get("query"))
@@ -176,6 +181,7 @@ func searchTodo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(message)
 }
 
+//This function marks an active todo as completed
 func markAsCompleted(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
