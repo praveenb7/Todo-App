@@ -1,0 +1,40 @@
+.newTodo {
+    width: 100vw;
+    padding-block: 2rem !important;
+    /* background: #f8f9fb; */
+    background: #479962;
+    /* background-color: rgb(116, 116, 236); */
+    /* background: #ebeff7; */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.todo {
+    padding: 1.5rem;
+    margin-block: 1rem;
+    background: #ebeff7;
+    border-radius: 7px;
+}
+
+.todo h3 {
+    margin: 0rem;
+}
+ 
+.todo p {
+    font-size: 17px;
+    font-weight: 400;
+    padding-block: 0.25rem;
+    padding-right: 5rem;
+}
+
+.todo button {
+    padding: 0.25rem 0.5rem;
+}
+
+#activeTodoSection {
+    margin-block: 5rem;
+}
+
+#completedTodoSection {
+    margin-block: 5rem;
+}
