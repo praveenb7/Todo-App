@@ -61,13 +61,13 @@ function getTodos() {
             todosObj["activetodos"].reverse().forEach(function (element, index) {
                 html += `
                 <div class="todo">
-                    <p class="todo-date"><b>Created on</b> ${element.date}</p>
+                    <p class="todo-date text-secondary"><b>Created on:</b> ${element.date}</p>
                     <h4 class="todo-title"> ${element.title} </h4>
-                    <p class="todo-text"> ${element.text} </p>
-                    <button id="${element.id}" type="button" class="todo-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <p class="todo-text lead"> ${element.text} </p>
+                    <button id="${element.id}" type="button" class="btn todo-btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="${element.title}" title-data="${element.title}" text-data="${element.text}" id-data=${element.id}>Edit Todo</button>
-                    <button id="${element.id}"onclick="markcompleted(this.id)" class="todo-btn btn-success">Mark as completed</button>
-                    <button id="${element.id}"onclick="deleteTodo(this.id)" class="todo-btn btn-danger">Delete Todo</button>
+                    <button id="${element.id}"onclick="markcompleted(this.id)" class="btn todo-btn btn-success m-1">Mark as completed</button>
+                    <button id="${element.id}"onclick="deleteTodo(this.id)" class="btn todo-btn btn-danger m-1">Delete Todo</button>
                 </div>
                     `;
             });
@@ -82,10 +82,10 @@ function getTodos() {
             todosObj["completedtodos"].reverse().forEach(function (element, index) {
                 html += `
                 <div class="todo">
-                    <p class="todo-date"><b>Created on</b> ${element.date}</p>
+                    <p class="todo-date text-secondary"><b>Created on</b> ${element.date}</p>
                     <h4 class="todo-title"> ${element.title} </h4>
-                    <p class="todo-text"> ${element.text}</p>
-                    <button id="${element.id}"onclick="deleteTodo(this.id)" class="todo-btn btn-danger">Delete Todo</button>
+                    <p class="todo-text lead"> ${element.text}</p>
+                    <button id="${element.id}"onclick="deleteTodo(this.id)" class="btn todo-btn btn-danger m-1">Delete Todo</button>
                 </div>
                     `;
             });
