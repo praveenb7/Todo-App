@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -20,6 +21,7 @@ type ToDo struct {
 	Title     string `json:"title"`
 	Text      string `json:"text"`
 	Completed bool   `json:"completed"`
+	Date      string `json:"date"`
 }
 
 type ToDoMessage struct {
@@ -63,7 +65,13 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	loc, locerr := time.LoadLocation("Asia/Kolkata")
+	if locerr != nil {
+		fmt.Println(locerr)
+	}
+
 	todo.Id = int32(rand.Intn(100000))
+	todo.Date = time.Now().In(loc).Format(time.RFC1123)
 	if todo.Completed {
 		completedTodos = append(completedTodos, todo)
 	} else {
@@ -92,15 +100,18 @@ func updateTodo(w http.ResponseWriter, r *http.Request) {
 	for index, todo := range openTodos {
 		fmt.Sscan(params["id"], &id)
 		if todo.Id == id {
+			newTodo := todo
 			openTodos = append(openTodos[:index], openTodos[index+1:]...)
-			tempTodo.Id = id
-			if tempTodo.Completed {
-				completedTodos = append(completedTodos, tempTodo)
+			newTodo.Title = tempTodo.Title
+			newTodo.Text = tempTodo.Text
+			newTodo.Completed = tempTodo.Completed
+			if newTodo.Completed {
+				completedTodos = append(completedTodos, newTodo)
 			} else {
-				openTodos = append(openTodos, tempTodo)
+				openTodos = append(openTodos, newTodo)
 			}
 
-			fmt.Println("PUT:", tempTodo)
+			fmt.Println("PUT:", newTodo)
 
 			var message = NormalMessage{Success: true, Msg: "Todo updated successfully"}
 			json.NewEncoder(w).Encode(message)
@@ -204,7 +215,6 @@ func markAsCompleted(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusBadRequest)
 	var message = NormalMessage{Success: false, Msg: "Failed to update todo"}
 	json.NewEncoder(w).Encode(message)
-
 }
 
 func main() {
@@ -235,5 +245,10 @@ func main() {
 	router.HandleFunc("/todos/search", searchTodo).Methods("GET")
 	router.HandleFunc("/todos/markcompleted/{id}", markAsCompleted).Methods("PUT")
 
-	log.Fatal(http.ListenAndServe(":5000", handlers.CORS(headers, methods, origins)(router)))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
+
+	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(headers, methods, origins)(router)))
 }

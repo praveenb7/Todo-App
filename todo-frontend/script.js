@@ -10,7 +10,7 @@ function markcompleted(id) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText)
-                setTimeout(function () { window.location.reload(); }, 200);
+                window.location.reload();
             }
             else {
                 console.log(this.responseText)
@@ -30,7 +30,7 @@ function deleteTodo(id) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText)
-                setTimeout(function () { window.location.reload(); }, 200);
+                window.location.reload();
             }
             else {
                 console.log(this.responseText)
@@ -61,8 +61,9 @@ function getTodos() {
             todosObj["activetodos"].reverse().forEach(function (element, index) {
                 html += `
                 <div class="todo">
+                    <p class="todo-date"><b>Created on</b> ${element.date}</p>
                     <h4 class="todo-title"> ${element.title} </h4>
-                    <p class="note-text"> ${element.text} </p>
+                    <p class="todo-text"> ${element.text} </p>
                     <button id="${element.id}" type="button" class="todo-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="${element.title}" title-data="${element.title}" text-data="${element.text}" id-data=${element.id}>Edit Todo</button>
                     <button id="${element.id}"onclick="markcompleted(this.id)" class="todo-btn btn-success">Mark as completed</button>
@@ -74,15 +75,16 @@ function getTodos() {
             if (todosObj['activetodos'].length != 0) {
                 activeTodosElm.innerHTML = html;
             } else {
-                activeTodosElm.innerHTML = `No Active Todos found!`;
+                activeTodosElm.innerHTML = `<p class="lead px-1">No todos found!</p>`;
             }
 
             html = "";
             todosObj["completedtodos"].reverse().forEach(function (element, index) {
                 html += `
                 <div class="todo">
+                    <p class="todo-date"><b>Created on</b> ${element.date}</p>
                     <h4 class="todo-title"> ${element.title} </h4>
-                    <p class="note-text"> ${element.text}</p>
+                    <p class="todo-text"> ${element.text}</p>
                     <button id="${element.id}"onclick="deleteTodo(this.id)" class="todo-btn btn-danger">Delete Todo</button>
                 </div>
                     `;
@@ -91,7 +93,7 @@ function getTodos() {
             if (todosObj['completedtodos'].length != 0) {
                 completedTodosElm.innerHTML = html;
             } else {
-                completedTodosElm.innerHTML = `No Completed Todos found!`;
+                completedTodosElm.innerHTML = `<p class="lead px-1">No todos found!</p>`;
             }
 
         })
@@ -147,7 +149,7 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
             createrequest.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText)
-                    setTimeout(function () { window.location.reload(); }, 200);
+                    window.location.reload();
                 }
             };
             createrequest.open("POST", apiurl, true);
@@ -160,7 +162,7 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
             updaterequest.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText)
-                    setTimeout(function () { window.location.reload(); }, 200);
+                    window.location.reload();
                 }
             };
             updaterequest.open("PUT", apiurl + "/" + button.getAttribute('id'), true);
