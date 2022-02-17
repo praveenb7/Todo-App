@@ -1,5 +1,5 @@
 .navbar {
-    padding-block: 0.8rem !important;
+    padding-block: 0.6rem !important;
 }
 
 .navbar-brand strong {
@@ -25,13 +25,14 @@
     border-radius: 7px;
 }
 
-.todo h3 {
-    margin: 0rem;
+.todo-title {
+    font-weight: 800;
 }
+
  
 .todo-text {
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 500;
     padding-block: 0.25rem;
     padding-right: 5rem;
 }

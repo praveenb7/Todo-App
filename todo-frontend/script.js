@@ -61,9 +61,9 @@ function getTodos() {
             todosObj["activetodos"].reverse().forEach(function (element, index) {
                 html += `
                 <div class="todo">
-                    <p class="todo-date text-secondary"><b>Created on:</b> ${element.date}</p>
-                    <h4 class="todo-title"> ${element.title} </h4>
-                    <p class="todo-text lead"> ${element.text} </p>
+                    <p class="todo-date text-secondary mx-1"><b>Created on:</b> ${element.date}</p>
+                    <h3 class="todo-title m-1"> ${element.title} </h3>
+                    <p class="todo-text lead mx-1 mt-1 mb-3"> ${element.text} </p>
                     <button id="${element.id}" type="button" class="btn todo-btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-bs-whatever="${element.title}" title-data="${element.title}" text-data="${element.text}" id-data=${element.id}>Edit Todo</button>
                     <button id="${element.id}"onclick="markcompleted(this.id)" class="btn todo-btn btn-success m-1">Mark as completed</button>
