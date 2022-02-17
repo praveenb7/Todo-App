@@ -11,6 +11,7 @@ import (
 )
 
 func init() {
+	// Seeding dummy data
 	openTodos = append(openTodos,
 		ToDo{Id: int32(1), Title: "First Todo", Text: "Dummy text 1", Completed: false, Date: "test-date"},
 		ToDo{Id: int32(2), Title: "Second Todo", Text: "Dummy text 2", Completed: false, Date: "test-date"},
@@ -28,8 +29,8 @@ func Router() *mux.Router {
 	router.HandleFunc("/todos", CreateTodo).Methods("POST")
 	router.HandleFunc("/todos/{id}", UpdateTodo).Methods("PUT")
 	router.HandleFunc("/todos/{id}", DeleteTodo).Methods("DELETE")
-	router.HandleFunc("/todos/search", SearchTodo).Methods("GET")
 	router.HandleFunc("/todos/markcompleted/{id}", MarkAsCompleted).Methods("PUT")
+	router.HandleFunc("/todos/search", SearchTodo).Methods("GET")
 
 	return router
 }
@@ -92,3 +93,16 @@ func TestMarkAsCompleted(t *testing.T) {
 	message := `{"success":true,"msg":"Todo marked as complete"}`
 	assert.Equalf(t, message+"\n", response.Body.String(), "Invalid Json! Expected %v but got %v instead", message, response.Body.String())
 }
+
+// func TestSearchTodo(t *testing.T) {
+// 	var jsonStr = []byte(`{"query":"1"}`)
+// 	request, _ := http.NewRequest("GET", "/todos/search", bytes.NewBuffer(jsonStr))
+
+// 	response := httptest.NewRecorder()
+// 	Router().ServeHTTP(response, request)
+
+// 	assert.Equal(t, 200, response.Code, "OK response is expected")
+
+// 	message := `{"success":true,"msg":"1 active todos and 0 completed todos","activetodos":null,"completedtodos":null}`
+// 	assert.Equalf(t, message+"\n", response.Body.String(), "Invalid Json! Expected %v but got %v instead", message, response.Body.String())
+// }

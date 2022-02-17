@@ -253,14 +253,14 @@ func main() {
 
 	// Dummy Data
 
-	openTodos = append(openTodos,
-		ToDo{Id: int32(1), Title: "First Todo", Text: "Dummy text 1", Completed: false, Date: time.Now().Format(time.RFC1123)},
-		ToDo{Id: int32(2), Title: "Second Todo", Text: "Dummy text 2", Completed: false, Date: time.Now().Format(time.RFC1123)},
-	)
+	// openTodos = append(openTodos,
+	// 	ToDo{Id: int32(1), Title: "First Todo", Text: "Dummy text 1", Completed: false, Date: time.Now().Format(time.RFC1123)},
+	// 	ToDo{Id: int32(2), Title: "Second Todo", Text: "Dummy text 2", Completed: false, Date: time.Now().Format(time.RFC1123)},
+	// )
 
-	completedTodos = append(completedTodos,
-		ToDo{Id: int32(3), Title: "Completed Todo", Text: "Dummy text 3", Completed: true, Date: time.Now().Format(time.RFC1123)},
-	)
+	// completedTodos = append(completedTodos,
+	// 	ToDo{Id: int32(3), Title: "Completed Todo", Text: "Dummy text 3", Completed: true, Date: time.Now().Format(time.RFC1123)},
+	// )
 
 	router.HandleFunc("/todos", GetAllTodos).Methods("GET")
 	router.HandleFunc("/todos", CreateTodo).Methods("POST")
