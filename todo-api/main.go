@@ -199,36 +199,32 @@ func MarkAsCompleted(w http.ResponseWriter, r *http.Request) {
 func SearchTodo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	type SearchRequest struct {
-		Query string `json:"query"`
-	}
-	var querystring SearchRequest
-	err := json.NewDecoder(r.Body).Decode(&querystring)
-	if err != nil || querystring.Query == "" {
+	var querystring = r.URL.Query().Get("query")
+	fmt.Println(querystring)
+
+	if querystring == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		var message = NormalMessage{Success: false, Msg: "Bad Request"}
 		json.NewEncoder(w).Encode(message)
 		return
 	}
-	fmt.Println(querystring)
 
 	var resOpenTodos []ToDo
 	var resCompletedTodos []ToDo
 
 	for _, todo := range openTodos {
-		titleMatched, _ := regexp.MatchString(querystring.Query, strings.ToLower(todo.Title))
-		textMatched, _ := regexp.MatchString(querystring.Query, strings.ToLower(todo.Text))
+		titleMatched, _ := regexp.MatchString(querystring, strings.ToLower(todo.Title))
+		textMatched, _ := regexp.MatchString(querystring, strings.ToLower(todo.Text))
 		if titleMatched || textMatched {
-			// fmt.Println(todo)
 			resOpenTodos = append(resOpenTodos, todo)
 		}
 	}
 
 	for _, todo := range completedTodos {
-		titleMatched, _ := regexp.MatchString(querystring.Query, strings.ToLower(todo.Title))
-		textMatched, _ := regexp.MatchString(querystring.Query, strings.ToLower(todo.Text))
+		titleMatched, _ := regexp.MatchString(querystring, strings.ToLower(todo.Title))
+		textMatched, _ := regexp.MatchString(querystring, strings.ToLower(todo.Text))
+
 		if titleMatched || textMatched {
-			// fmt.Println(todo)
 			resCompletedTodos = append(resCompletedTodos, todo)
 		}
 	}
