@@ -227,7 +227,7 @@ searchBtn.addEventListener("click", function(ev) {
             if(todosObj["completedtodos"] && todosObj['completedtodos'] != null) {
                 searchcount += todosObj['completedtodos'].length;
             }
-            searchResultElm.innerHTML = `<p class="lead"><b>${searchcount} results found.</b> <a style="color:#0790D1"; href="/"> Return to main menu</a></p>`;
+            searchResultElm.innerHTML = `<p class="lead"><b>${searchcount} results found.</b> <a style="color:#0790D1"; href="/Todo-App"> Return to main menu</a></p>`;
 
 
             activeTodosElm.innerHTML = ``;
