@@ -1,16 +1,32 @@
+html, body {
+    overflow: auto;
+}
+
 .navbar {
     padding-block: 0.6rem !important;
+    background: #5879b3 !important;
+    border-bottom: black;
 }
 
 .navbar-brand strong {
     font-weight: 900 !important;
 }
 
+body {
+    background-color: #f5f5f5 !important;
+}
+
+.todoContent {
+    background: #eeeeee;
+}
+
 .newTodo {
+    display: block;
     width: 100vw;
     padding-block: 1rem !important;
     /* background: #f8f9fb; */
-    background: #479962;
+    /* background: #479962; */
+    /* background: white; */
     /* background-color: rgb(116, 116, 236); */
     /* background: #ebeff7; */
     border-bottom-left-radius: 15px;
@@ -20,9 +36,11 @@
 .todo {
     padding: 1.5rem;
     margin-block: 1rem;
-    background: #ebeff7;
+    /* background: #ebeff7; */
+    background: white;
     outline-color: black;
     border-radius: 7px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .todo-title {
