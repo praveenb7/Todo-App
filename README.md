@@ -1,3 +1,3 @@
 # Todo-App
 
-### Project demo - [https://praveenb7.github.io/Todo-App/todo-frontend/](https://praveenb7.github.io/Todo-App/todo-frontend/)
+### Project demo - [praveenb7.github.io/Todo-App/](https://praveenb7.github.io/Todo-App/)
