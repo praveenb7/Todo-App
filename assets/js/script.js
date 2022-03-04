@@ -160,7 +160,7 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
             createrequest.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
-                    window.location = window.location
+                    window.location = window.location;
                 }
             };
             createrequest.open("POST", apiurl, true);
@@ -173,7 +173,7 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
             updaterequest.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
-
+                    window.location = window.location;
                 }
             };
             updaterequest.open("PUT", apiurl + "/" + button.getAttribute('id'), true);
