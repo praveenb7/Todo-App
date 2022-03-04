@@ -1,20 +1,26 @@
 html, body {
     overflow: auto;
 }
+body {
+    background-color: #ececec !important;
+}
 
 .navbar {
     padding-block: 0.6rem !important;
-    background: #5879b3 !important;
-    border-bottom: black;
+    /* background: #5879b3 !important; */
+    /* background: #366bc7 !important; */
+    /* background: #1464cc !important; */
+    background-color: #2363ca;
+    border:0px #000;
+    box-shadow: outset;
+    -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
 }
 
 .navbar-brand strong {
     font-weight: 900 !important;
 }
 
-body {
-    background-color: #f5f5f5 !important;
-}
 
 .todoContent {
     background: #eeeeee;
@@ -24,19 +30,18 @@ body {
     display: block;
     width: 100vw;
     padding-block: 1rem !important;
-    /* background: #f8f9fb; */
-    /* background: #479962; */
-    /* background: white; */
-    /* background-color: rgb(116, 116, 236); */
-    /* background: #ebeff7; */
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+
+.newTodo button {
+    color: white;
+    background-color: #2363ca;
 }
 
 .todo {
     padding: 1.5rem;
     margin-block: 1rem;
-    /* background: #ebeff7; */
     background: white;
     outline-color: black;
     border-radius: 7px;
